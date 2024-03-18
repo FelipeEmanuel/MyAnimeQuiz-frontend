@@ -9,10 +9,34 @@
 
 }
 
-.tags {
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.coisas {
     display: flex;
     flex-wrap: wrap;
     gap: 3px;
     padding: 2px 4px;
+    border-radius: 15px;
+}
+
+.certas {
+    padding: 2px 8px;
+    background-color: green;
+    border-radius: 15px;
+}
+
+.erradas {
+    padding: 2px 8px;
+    background-color: red;
+    border-radius: 15px;
+}
+
+.tags {
+    padding: 2px 8px;
+    background-color: purple;
     border-radius: 15px;
 }

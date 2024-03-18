@@ -9,10 +9,22 @@
 
 }
 
-.tags {
+.listagem {
     display: flex;
     flex-wrap: wrap;
     gap: 3px;
     padding: 2px 4px;
     border-radius: 15px;
+}
+
+.demografia {
+    padding: 2px 8px;
+    background-color: yellow;
+    border-radius: 15px;
+}
+
+.div2 {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px 0px 0px;
 }
