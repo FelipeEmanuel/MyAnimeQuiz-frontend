@@ -1,0 +1,18 @@
+.animes {
+    background-color: #C0C0C0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+    padding: 10px;
+
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    padding: 2px 4px;
+    border-radius: 15px;
+}
