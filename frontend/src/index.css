@@ -34,6 +34,11 @@
   margin-bottom: 20px;
 }
 
+.btn-block2 {
+  padding: 10px;
+  font-size: 14px;
+}
+
 a {
   text-decoration: none;
   color: #000;
@@ -52,4 +57,68 @@ body {
   display: flex;
   justify-content: center;
   padding: 0px 0px 20px 0px;
+}
+
+.form-input-tag {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+
+.lista-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lista-tags-div {
+  display: flex;
+  align-items: start;
+}
+
+.lista-tags-inside {
+  padding: 2px 8px;
+  background-color: green;
+  border-radius: 15px;
+}
+
+.lista-tags-x {
+  padding: 2px 4px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.formulario {
+  width: 100%;
+}
+
+.animes input,
+.animes textarea,
+.animes select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.animes,
+.content {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.animes {
+  margin-bottom: 10px;
+}
+
+.animes label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
 }

@@ -12,7 +12,8 @@ function ListarAnime() {
   const [isFetching, setIsFetching] = useState(true);
   const [buttonPopup, setButtonPopup] = useState(false);
   const [name, setName] = useState("");
-  const [tags, setTags] = useState(["Ação", "Aventura", "Fantasia", "Sci-Fi", "Mitologia", "Shounen"]);
+  const [tags, setTags] = useState([]);
+  const [tag, setTag] = useState("");
 
   useEffect(() => {
     get("api/animes", setData, setError, setIsFetching);
@@ -34,6 +35,15 @@ function ListarAnime() {
 
     post('api/animes', body, setData);
   };
+
+  function addTags() {
+    setTags([...tags, tag]);
+    setTag("");
+  }
+
+  function apagarTag(tag) {
+    setTags(tags.filter((t) => t !== tag));
+  }
 
   return (
     <>
@@ -61,15 +71,51 @@ function ListarAnime() {
       <ModalPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form className="formulario" onSubmit={(event) => criarAnime(event)}>
           <div className="animes">
-            <label>Nome</label>
+            <label><b>Nome</b></label>
             <input
-              type="size-input"
+              type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
               required={true}
             />
+            <label>
+              <b>Tags</b>
+            </label>
+            <div className="form-input-tag">
+              <input
+                type="text"
+                value={tag}
+                onChange={(event) => setTag(event.target.value)}
+              />
+              <button
+                className="btn btn-block2"
+                type="button"
+                onClick={addTags}
+              >
+                Add
+              </button>
+            </div>
+            <div>
+              <div className="lista-tags">
+                {tags.map((t) => {
+                  return (
+                    <div className="lista-tags-div">
+                      <span className="lista-tags-inside" key={t}>
+                        {t}
+                      </span>
+                      <span
+                        className="lista-tags-x"
+                        onClick={() => apagarTag(t)}
+                      >
+                        <b>x</b>
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-          <button>Submit</button>
+          <button className="btn btn-block">Adicionar</button>
         </form>
       </ModalPopup>
     </>
