@@ -36,6 +36,7 @@ function ListarAnime() {
     post('api/animes', body, setData);
     setName("")
     setTag("")
+    tags.splice(0, tags.length);
   };
 
   function addTags() {

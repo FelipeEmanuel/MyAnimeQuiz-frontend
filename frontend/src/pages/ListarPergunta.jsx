@@ -52,6 +52,9 @@ function ListarPergunta() {
     setRespostaCerta("");
     setOpcao("");
     setDificuldade("");
+    tipos.splice(0, tipos.length);
+    respostasCertas.splice(0, respostasCertas.length);
+    opcoes.splice(0, opcoes.length);
   };
 
   //Tipos
