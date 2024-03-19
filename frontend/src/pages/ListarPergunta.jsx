@@ -47,6 +47,11 @@ function ListarPergunta() {
     };
 
     post(`api/perguntas/${id}`, body, setData);
+    setDescricao("");
+    setTipo("");
+    setRespostaCerta("");
+    setOpcao("");
+    setDificuldade("");
   };
 
   //Tipos
