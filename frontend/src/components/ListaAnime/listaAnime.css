@@ -6,7 +6,14 @@
     gap: 5px;
     margin: 10px 0;
     padding: 10px;
+    position: relative;
+}
 
+.deletar {
+    cursor: pointer;
+    position: absolute;
+    top: -10px;
+    right: -10px;
 }
 
 .listagem {
@@ -27,4 +34,12 @@
   display: flex;
   justify-content: center;
   padding: 20px 0px 0px 0px;
+}
+
+.botao-anime {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 50%;
 }

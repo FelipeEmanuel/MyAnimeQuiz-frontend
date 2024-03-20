@@ -12,7 +12,6 @@ function ListarPergunta() {
   const [error, setError] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [anime, setAnime] = useState("");
   const [descricao, setDescricao] = useState("");
   const [tipos, setTipos] = useState([]);
   const [tipo, setTipo] = useState("");
@@ -24,7 +23,7 @@ function ListarPergunta() {
 
   useEffect(() => {
     get(`api/perguntas/${id}`, setData, setError, setIsFetching);
-  }, []);
+  }, [data]);
 
   const dificuldades = ["Fácil", "Médio", "Difícil"];
 
@@ -62,7 +61,6 @@ function ListarPergunta() {
     tipos.push(tipo);
     setTipos(tipos);
     setTipo("");
-    //console.log(tags);
     /*setTipos([...tipos, tipo]);
     setTipo("");*/
   }
@@ -109,7 +107,7 @@ function ListarPergunta() {
       {data?.length > 0 && (
         <div>
           {data?.map((pergunta) => (
-            <ListaPergunta key={pergunta._id} pergunta={pergunta} />
+            <ListaPergunta key={pergunta._id} pergunta={pergunta} setPergunta={setData}/>
           ))}
         </div>
       )}

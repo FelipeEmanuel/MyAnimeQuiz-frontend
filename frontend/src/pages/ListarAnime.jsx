@@ -17,7 +17,7 @@ function ListarAnime() {
 
   useEffect(() => {
     get("api/animes", setData, setError, setIsFetching);
-  }, []);
+  }, [data]);
 
   if (isFetching) {
     return <Spinner />;
@@ -60,7 +60,7 @@ function ListarAnime() {
       {data?.length > 0 && (
         <div>
           {data?.map((anime) => (
-            <ListaAnime key={anime._id} anime={anime} />
+            <ListaAnime key={anime._id} anime={anime} setAnime={setData}/>
           ))}
         </div>
       )}
