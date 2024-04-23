@@ -13,7 +13,6 @@ function ListarPergunta() {
   const [isFetching, setIsFetching] = useState(true);
   const [buttonPopup, setButtonPopup] = useState(false);
   const [descricao, setDescricao] = useState("");
-  const [tipos, setTipos] = useState([]);
   const [tipo, setTipo] = useState("");
   const [respostasCertas, setRespostasCertas] = useState([]);
   const [respostaCerta, setRespostaCerta] = useState("");
@@ -26,6 +25,7 @@ function ListarPergunta() {
   }, [data]);
 
   const dificuldades = ["Fácil", "Médio", "Difícil"];
+  const tipos = ["História", "Trivia", "Filler"];
 
   if (isFetching) {
     return <Spinner />;
@@ -38,7 +38,7 @@ function ListarPergunta() {
 
     const body = {
       descricao,
-      tipos,
+      tipos: tipo,
       respostasCertas,
       opcoes,
       dificuldade,
@@ -47,27 +47,13 @@ function ListarPergunta() {
 
     post(`api/perguntas/${id}`, body, setData);
     setDescricao("");
-    setTipo("");
     setRespostaCerta("");
+    setTipo("");
     setOpcao("");
     setDificuldade("");
-    tipos.splice(0, tipos.length);
     respostasCertas.splice(0, respostasCertas.length);
     opcoes.splice(0, opcoes.length);
   };
-
-  //Tipos
-  function addTipos() {
-    tipos.push(tipo);
-    setTipos(tipos);
-    setTipo("");
-    /*setTipos([...tipos, tipo]);
-    setTipo("");*/
-  }
-
-  function apagarTipo(tipo) {
-    setTipos(tipos.filter((t) => t !== tipo));
-  }
 
   //RespostaCerta
   function addRespostasCertas() {
@@ -130,39 +116,20 @@ function ListarPergunta() {
             <label>
               <b>Tipo</b>
             </label>
-            <div className="form-input-tag">
-              <input
-                type="text"
-                value={tipo}
-                onChange={(event) => setTipo(event.target.value)}
-              />
-              <button
-                className="btn btn-block2"
-                type="button"
-                onClick={addTipos}
-              >
-                Add
-              </button>
-            </div>
-            <div>
-              <div className="lista-tags">
-                {tipos.map((t) => {
-                  return (
-                    <div className="lista-tags-div">
-                      <span className="lista-tags-inside" key={t}>
-                        {t}
-                      </span>
-                      <span
-                        className="lista-tags-x"
-                        onClick={() => apagarTipo(t)}
-                      >
-                        <b>x</b>
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <select
+              required={true}
+              value={tipo}
+              onChange={(evento) => setTipo(evento.target.value)}
+            >
+              <option />
+              {tipos?.map((t) => {
+                return (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                );
+              })}
+            </select>
             {/*----------------------RespostaCerta----------------------------*/}
             <label>
               <b>Respostas Certas</b>

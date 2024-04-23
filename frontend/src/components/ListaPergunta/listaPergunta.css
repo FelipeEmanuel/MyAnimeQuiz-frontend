@@ -48,6 +48,12 @@
     border-radius: 15px;
 }
 
+.dificuldades {
+    padding: 2px 8px;
+    background-color: yellow;
+    border-radius: 15px;
+}
+
 .rodape {
     margin-top: 10px;
 }

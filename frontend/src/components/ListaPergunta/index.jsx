@@ -11,8 +11,7 @@ function ListaPergunta({ pergunta, setPergunta }) {
   const [isFetching, setIsFetching] = useState(true);
   const [buttonPopup, setButtonPopup] = useState(false);
   const [descricao, setDescricao] = useState(pergunta?.descricao);
-  const [tipos, setTipos] = useState(pergunta?.tipos);
-  const [tipo, setTipo] = useState("");
+  const [tipo, setTipo] = useState(pergunta?.tipos);
   const [respostasCertas, setRespostasCertas] = useState(pergunta?.respostasCertas);
   const [respostaCerta, setRespostaCerta] = useState("");
   const [opcoes, setOpcoes] = useState(pergunta?.opcoes);
@@ -20,6 +19,7 @@ function ListaPergunta({ pergunta, setPergunta }) {
   const [dificuldade, setDificuldade] = useState(pergunta?.dificuldade);
 
   const dificuldades = ["Fácil", "Médio", "Difícil"];
+  const tipos = ["História", "Trivia", "Filler"];
 
   const deletarPergunta = () => {
     remove(
@@ -37,7 +37,7 @@ function ListaPergunta({ pergunta, setPergunta }) {
 
     const body = {
       descricao,
-      tipos,
+      tipos: tipo,
       respostasCertas,
       opcoes,
       dificuldade,
@@ -49,18 +49,6 @@ function ListaPergunta({ pergunta, setPergunta }) {
       console.error("Erro ao editar a pergunta", error);
     }
   };
-
-  function addTipos() {
-    tipos.push(tipo);
-    setTipos(tipos);
-    setTipo("");
-    /*setTipos([...tipos, tipo]);
-  setTipo("");*/
-  }
-
-  function apagarTipo(tipo) {
-    setTipos(tipos.filter((t) => t !== tipo));
-  }
 
   //RespostaCerta
   function addRespostasCertas() {
@@ -98,7 +86,7 @@ function ListaPergunta({ pergunta, setPergunta }) {
         <div className="cabecalho">
           <h1>{pergunta.anime.name}</h1>
           <h2>
-            Pergunta: ({pergunta.dificuldade}) {pergunta.descricao}
+            Pergunta: {pergunta.descricao}
           </h2>
         </div>
         <div className="opcoes">
@@ -120,11 +108,15 @@ function ListaPergunta({ pergunta, setPergunta }) {
           </div>
           <div className="coisas">
             <b>Tipo:</b>
-            {pergunta?.tipos?.map((tipo, i) => (
-              <span className="tags" key={i}>
-                {tipo}
-              </span>
-            ))}
+            <span className="tags">
+              {pergunta?.tipos}
+            </span>
+          </div>
+          <div className="coisas">
+            <b>Dificuldade:</b>
+            <span className="dificuldades">
+              {pergunta?.dificuldade}
+            </span>
           </div>
           <div className="rodape">
             <div className="botao">
@@ -155,39 +147,20 @@ function ListaPergunta({ pergunta, setPergunta }) {
             <label>
               <b>Tipo</b>
             </label>
-            <div className="form-input-tag">
-              <input
-                type="text"
-                value={tipo}
-                onChange={(event) => setTipo(event.target.value)}
-              />
-              <button
-                className="btn btn-block2"
-                type="button"
-                onClick={addTipos}
-              >
-                Add
-              </button>
-            </div>
-            <div>
-              <div className="lista-tags">
-                {tipos.map((t) => {
-                  return (
-                    <div className="lista-tags-div">
-                      <span className="lista-tags-inside" key={t}>
-                        {t}
-                      </span>
-                      <span
-                        className="lista-tags-x"
-                        onClick={() => apagarTipo(t)}
-                      >
-                        <b>x</b>
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <select
+              required={true}
+              value={tipo}
+              onChange={(evento) => setTipo(evento.target.value)}
+            >
+              <option />
+              {tipos?.map((t) => {
+                return (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                );
+              })}
+            </select>
             {/*----------------------RespostaCerta----------------------------*/}
             <label>
               <b>Respostas Certas</b>
